@@ -1,0 +1,6 @@
+java -jar apktool_2.5.0.jar b IndiaBIX_v2.2_apkpure.com.apk ///decompile
+java -jar apktool_2.5.0.jar b IndiaBIX_v2.2_apkpure.com///build
+
+
+
+java -jar Instrumentor.jar OriginalApk\IndiaBIX_v2.2_apkpure.com.apk InstrumentedApk\developed.apk
