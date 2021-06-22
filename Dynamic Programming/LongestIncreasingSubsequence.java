@@ -75,5 +75,29 @@ class Solution {
         }
         return res;
     }
+    ///////////////////////MEMOIZATION////////////////////////////////
+    /* class Solution {
+    public int helper(int[] nums,int[] dp,int idx){
+        if(idx == 0)return dp[idx] = 1;
+        if(dp[idx] != 0) return dp[idx];
+        
+        int max = 1;
+        for(int i = 0;i < idx;i++){
+            if(nums[idx] > nums[i]){
+                max = Math.max(max,helper(nums,dp,i) + 1);
+            }
+        }
+         return dp[idx] = max;
+    }
+    public int lengthOfLIS(int[] nums) {
+        int dp[] = new int[nums.length];
+        int ans = 1;
+        for(int i = 1;i < nums.length;i++){
+            int max = helper(nums,dp,i);
+            if(max > ans) ans = max;
+        }
+        return ans;
+    }*/
+}
     
 }
