@@ -68,7 +68,7 @@ class Solution
 
         int max = 0;
         if(tar - wt[n] >= 0){
-            max = knapSackHelper(tar - wt[n],wt,val,n-1,dp) + val[n];
+            max = knapSackHelper(tar - wt[n],wt,val,n,dp) + val[n];
         }
         max = Math.max(max,knapSackHelper(tar,wt,val,n-1,dp));
         return dp[n][tar] = max;
