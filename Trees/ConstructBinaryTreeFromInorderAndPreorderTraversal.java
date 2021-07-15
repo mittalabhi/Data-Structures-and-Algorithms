@@ -14,22 +14,22 @@
  * }
  */
 class Solution {
-    public TreeNode buildTree(int[] preorder,int psi,int pei,int[] inorder,int isi,int iei){
-        if(psi > pei) return null;
-
-        TreeNode root = new TreeNode(preorder[psi]);
-        int idx = 0;
-        while(preorder[psi] != inorder[idx]){
-            idx++;
-        }
-        int count = idx - isi;
-
-        root.left = buildTree(preorder,psi + 1,psi + count, inorder,isi,idx - 1);
-        root.right= buildTree(preorder,psi + count + 1,pei,inorder,idx + 1,iei);
-
+    HashMap<Integer,Integer> hm;
+    int idx = 0;
+    public TreeNode construct(int[] preorder,int[] inorder,int start,int end){
+        if(start > end) return null;
+        TreeNode root = new TreeNode(preorder[idx++]);
+        int mid = hm.get(root.val);
+        root.left = construct(preorder,inorder,start,mid - 1);
+        root.right = construct(preorder,inorder,mid + 1,end);
         return root;
     }
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        return buildTree(preorder,0,preorder.length - 1,inorder,0,inorder.length -1);
+        hm = new HashMap<>();
+        
+        for(int i = 0;i < inorder.length;i++){
+            hm.put(inorder[i],i);
+        }
+        return construct(preorder,inorder,0,inorder.length - 1);
     }
 }

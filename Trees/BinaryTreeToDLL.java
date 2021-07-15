@@ -1,31 +1,42 @@
-/**
- * Definition for a binary tree node.
+/*
+ * Definition of TreeNode:
  * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *     public int val;
+ *     public TreeNode left, right;
+ *     public TreeNode(int val) {
  *         this.val = val;
- *         this.left = left;
- *         this.right = right;
+ *         this.left = this.right = null;
  *     }
  * }
  */
-class Solution {
-    public boolean mirror(TreeNode root1, TreeNode root2){
-        if(root1 == null && root2 == null)
-            return true;
-        if(root1 == null || root2 == null)
-            return false;
-        if(root1.val != root2.val)
-            return false;
-        return mirror(root1.left,root2.right) && mirror(root1.right,root2.left);
-        
+
+public class Solution {
+    /*
+     * @param root: root of a tree
+     * @return: head node of a doubly linked list
+     */
+    TreeNode prev = null;
+    TreeNode head = null;
+    public void treeToDoublyListH(TreeNode root){
+        if(root == null) return;
+
+        treeToDoublyListH(root.left);
+            if(head == null) head = root;
+            else{
+                prev.right = root;
+                root.left = prev;
+            }
+            prev = root;
+
+        treeToDoublyListH(root.right);
     }
-    public boolean isSymmetric(TreeNode root) {
-        return mirror(root.left,root.right);
-        
+    public TreeNode treeToDoublyList(TreeNode root) {
+        // Write your code here.
+         treeToDoublyListH(root);
+
+         root = head;
+            prev.right = head;
+            head.left = prev;
+         return root;
     }
 }

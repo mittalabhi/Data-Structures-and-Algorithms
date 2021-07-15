@@ -8,7 +8,7 @@ class BuildingBridges{
         });
         int dp[] = new int[arr.length];
         Arrays.fill(dp,1);
-        int max = 1;
+        int ans = 1;
         for(int i = 1;i < arr.length;i++){
             for(int j = 0;j < i;j++){
                 if(arr[i][1] > arr[j][1]){
@@ -17,6 +17,10 @@ class BuildingBridges{
                 }
             }
         }
-        System.out.print(max);
+        System.out.print(ans);
     }
 }
+
+
+8 1 4 3 5 2 6 7 
+1 2 3 4 5 6 7 8
